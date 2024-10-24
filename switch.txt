@@ -1,0 +1,136 @@
+// #include <iostream>
+// #include <string>
+
+// using namespace std;
+
+// class Figura {
+// private:
+//     string nazwa;
+//     double obwod;
+//     double pole;
+    
+// public:
+//     // Konstruktor
+//     Figura(string n, double o, double p) : nazwa(n), obwod(o), pole(p) {}
+
+//     // Gettery
+//     string getNazwa() const { return nazwa; }
+//     double getObwod() const { return obwod; }
+//     double getPole() const { return pole; }
+
+//     // Settery
+//     void setNazwa(string n) { nazwa = n; }
+//     void setObwod(double o) { obwod = o; }
+//     void setPole(double p) { pole = p; }
+// };
+
+// int main()
+// {
+//     Figura figura1("Kwadrat", 12.0, 9.0);
+//     Figura figura2("Trójkąt", 15.0, 6.0);
+    
+//     cout << figura1.getNazwa() << ": " << figura1.getPole() << " | " << figura1.getObwod() << std::endl;
+//     cout << figura2.getNazwa() << ": " << figura2.getPole() << " | " << figura2.getObwod() << std::endl;
+
+//     return 0;
+
+//     return 0;
+// }
+
+
+// Kalkulator
+// #include <iostream>
+// using namespace std;
+
+// int main() {
+//     double a, b;
+//     char operacja;
+
+//     cout << "Podaj dwie liczby: ";
+//     cin >> a >> b;
+
+//     cout << "Podaj operację (+, -, *, /): ";
+//     cin >> operacja;
+
+//     switch (operacja) {
+//         case '+':
+//             cout << "Wynik: " << (a + b) << endl;
+//             break;
+//         case '-':
+//             cout << "Wynik: " << (a - b) << endl;
+//             break;
+//         case '*':
+//             cout << "Wynik: " << (a * b) << endl;
+//             break;
+//         case '/':
+//             if (b != 0)
+//                 cout << "Wynik: " << (a / b) << endl;
+//             else
+//                 cout << "Błąd: dzielenie przez zero!" << endl;
+//             break;
+//         default:
+//             cout << "Nieznana operacja." << endl;
+//             break;
+//     }
+
+//     return 0;
+// }
+
+//Aplikacja bankowa
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Konto {
+private:
+    string imie;
+    double saldo;
+    
+public:
+    Konto() : imie(""), saldo(0.0) {}
+
+// Gettery i settery
+    string getImie() const { return imie; }
+    double getSaldo() const { return saldo; }
+
+    void setImie(string i) { imie = i; }
+    void setSaldo(double s) { saldo = s; }
+    
+    void wplata(double kwota) { saldo += kwota; }
+    void wyplata(double kwota) { if (kwota <= saldo) saldo -= kwota; }
+};
+
+class Bank {
+private:
+    Konto konta[10];
+    int liczbaKont;
+    
+public:
+    Bank() : liczbaKont(0) {}
+
+    void dodajKonto(string imie) {
+        if (liczbaKont < 10) {
+            konta[liczbaKont].setImie(imie);
+            liczbaKont++;
+        } else {
+            cout << "Nie moze byc wiecej 10 kont w banku." << endl;
+        }
+    }
+
+void wyswietlKonta() {
+        for (int i = 0; i < liczbaKont; i++) {
+            cout << "Konto " << i + 1 << ": " << konta[i].getImie() << ", Saldo: " << konta[i].getSaldo() << endl;
+        }
+    }
+};
+
+int main() {
+    Bank bank;
+    bank.dodajKonto("Phillip Tunski");
+    bank.dodajKonto("Emilja Kockowska");
+    
+
+    bank.wyswietlKonta();
+
+    return 0;
+}
